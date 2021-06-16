@@ -1,0 +1,14 @@
+version: '2'
+services:
+
+  prom:
+    image: prom/prometheus:latest
+
+  graf:
+    image: grafana/grafana
+    ports:
+      - "80:3000"
+    volumes:
+      - ./graf/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+    depends_on:
+      - prom
